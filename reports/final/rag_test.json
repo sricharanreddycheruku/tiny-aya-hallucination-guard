@@ -1,0 +1,928 @@
+{
+ "thresholds": {
+  "joint": 0.4473159266863557,
+  "selective": 0.363219063540588
+ },
+ "n": 1721,
+ "languages": {
+  "en": {
+   "n": 440,
+   "wrong_if_always_answering": 0.45681818181818185,
+   "scores": {
+    "guard": {
+     "auroc": 0.8768292429068049,
+     "ci": [
+      0.8426428657945737,
+      0.9085744824293507
+     ],
+     "aurc": 0.18883231107402923
+    },
+    "probe": {
+     "auroc": 0.871292075188909,
+     "ci": [
+      0.8383961334208427,
+      0.9027739883481918
+     ],
+     "aurc": 0.19199902646062156,
+     "guard_gain_ci": [
+      -0.006281964792391753,
+      0.017074071442528514
+     ]
+    },
+    "similarity": {
+     "auroc": 0.7228293678053248,
+     "ci": [
+      0.676018050954616,
+      0.7701042236402704
+     ],
+     "aurc": 0.3004550695146367,
+     "guard_gain_ci": [
+      0.11624715522865095,
+      0.19308705132396214
+     ]
+    },
+    "logprob": {
+     "auroc": 0.7364641229001436,
+     "ci": [
+      0.6912969360966557,
+      0.7793458167165171
+     ],
+     "aurc": 0.29339029608876954,
+     "guard_gain_ci": [
+      0.10168242287195868,
+      0.1830677932325293
+     ]
+    },
+    "p_true": {
+     "auroc": 0.7727575511563521,
+     "ci": [
+      0.725433561155454,
+      0.8148498010656079
+     ],
+     "aurc": 0.2696407943652307,
+     "guard_gain_ci": [
+      0.06806234757928713,
+      0.1393892457516977
+     ]
+    },
+    "agreement": {
+     "auroc": 0.740242303128708,
+     "ci": [
+      0.6943693028496406,
+      0.7859146620744829
+     ],
+     "aurc": 0.32931282408694745,
+     "guard_gain_ci": [
+      0.09311940534737731,
+      0.1782696058180555
+     ]
+    },
+    "consensus": {
+     "auroc": 0.7191864943067091,
+     "ci": [
+      0.6696839478662631,
+      0.7653486226134392
+     ],
+     "aurc": 0.3111953237846921,
+     "guard_gain_ci": [
+      0.10958363723667663,
+      0.20857992141167367
+     ]
+    }
+   },
+   "guard": {
+    "joint": {
+     "coverage": 0.44545454545454544,
+     "joint_risk": 0.05909090909090909,
+     "selective_risk": 0.1326530612244898,
+     "n_answered": 196
+    },
+    "selective": {
+     "coverage": 0.36363636363636365,
+     "joint_risk": 0.04318181818181818,
+     "selective_risk": 0.11875,
+     "n_answered": 160
+    },
+    "joint_own_language_threshold": {
+     "coverage": 0.5295454545454545,
+     "joint_risk": 0.09090909090909091,
+     "selective_risk": 0.17167381974248927,
+     "n_answered": 233
+    }
+   },
+   "global_threshold": {
+    "guard": {
+     "joint": {
+      "coverage": 0.44545454545454544,
+      "joint_risk": 0.05909090909090909,
+      "selective_risk": 0.1326530612244898,
+      "n_answered": 196
+     },
+     "selective": {
+      "coverage": 0.36363636363636365,
+      "joint_risk": 0.04318181818181818,
+      "selective_risk": 0.11875,
+      "n_answered": 160
+     }
+    },
+    "probe": {
+     "joint": {
+      "coverage": 0.4659090909090909,
+      "joint_risk": 0.07727272727272727,
+      "selective_risk": 0.16585365853658537,
+      "n_answered": 205
+     },
+     "selective": {
+      "coverage": 0.3568181818181818,
+      "joint_risk": 0.04318181818181818,
+      "selective_risk": 0.12101910828025478,
+      "n_answered": 157
+     }
+    },
+    "similarity": {
+     "joint": {
+      "coverage": 0.36363636363636365,
+      "joint_risk": 0.09318181818181819,
+      "selective_risk": 0.25625,
+      "n_answered": 160
+     },
+     "selective": {
+      "coverage": 0.006818181818181818,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 3
+     }
+    },
+    "logprob": {
+     "joint": {
+      "coverage": 0.1590909090909091,
+      "joint_risk": 0.04090909090909091,
+      "selective_risk": 0.2571428571428571,
+      "n_answered": 70
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "p_true": {
+     "joint": {
+      "coverage": 0.45227272727272727,
+      "joint_risk": 0.10454545454545454,
+      "selective_risk": 0.23115577889447236,
+      "n_answered": 199
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "agreement": {
+     "joint": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "consensus": {
+     "joint": {
+      "coverage": 0.022727272727272728,
+      "joint_risk": 0.0022727272727272726,
+      "selective_risk": 0.1,
+      "n_answered": 10
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    }
+   }
+  },
+  "te": {
+   "n": 669,
+   "wrong_if_always_answering": 0.48878923766816146,
+   "scores": {
+    "guard": {
+     "auroc": 0.909687572652324,
+     "ci": [
+      0.884013728850066,
+      0.9318589779847354
+     ],
+     "aurc": 0.19103179056265093
+    },
+    "probe": {
+     "auroc": 0.8895237584276696,
+     "ci": [
+      0.8608066650350482,
+      0.9171385437173635
+     ],
+     "aurc": 0.21722785043215445,
+     "guard_gain_ci": [
+      0.0074080579220621254,
+      0.032621123481972485
+     ]
+    },
+    "similarity": {
+     "auroc": 0.8767637748806266,
+     "ci": [
+      0.8497226901585729,
+      0.9017586105232591
+     ],
+     "aurc": 0.20236030767428106,
+     "guard_gain_ci": [
+      0.010511567448598944,
+      0.05619242896670022
+     ]
+    },
+    "logprob": {
+     "auroc": 0.5824167963231218,
+     "ci": [
+      0.5396006893746674,
+      0.622625904509491
+     ],
+     "aurc": 0.42245569167080294,
+     "guard_gain_ci": [
+      0.28518359482518163,
+      0.37233042219171586
+     ]
+    },
+    "p_true": {
+     "auroc": 0.7783276999839047,
+     "ci": [
+      0.7427598801834646,
+      0.8132600524242256
+     ],
+     "aurc": 0.27112269270450357,
+     "guard_gain_ci": [
+      0.10008018177058658,
+      0.16285392837405593
+     ]
+    },
+    "agreement": {
+     "auroc": 0.6044941609886081,
+     "ci": [
+      0.5709532004919347,
+      0.6360534900348557
+     ],
+     "aurc": 0.42519015363422913,
+     "guard_gain_ci": [
+      0.27336489360498584,
+      0.337166560016124
+     ]
+    },
+    "consensus": {
+     "auroc": 0.5584661194270079,
+     "ci": [
+      0.5161427372002215,
+      0.6014096497251007
+     ],
+     "aurc": 0.47726102744002336,
+     "guard_gain_ci": [
+      0.3054901789424195,
+      0.39325261035240844
+     ]
+    }
+   },
+   "guard": {
+    "joint": {
+     "coverage": 0.49028400597907323,
+     "joint_risk": 0.06278026905829596,
+     "selective_risk": 0.12804878048780488,
+     "n_answered": 328
+    },
+    "selective": {
+     "coverage": 0.43946188340807174,
+     "joint_risk": 0.03587443946188341,
+     "selective_risk": 0.08163265306122448,
+     "n_answered": 294
+    },
+    "joint_own_language_threshold": {
+     "coverage": 0.47533632286995514,
+     "joint_risk": 0.05530642750373692,
+     "selective_risk": 0.11635220125786164,
+     "n_answered": 318
+    }
+   },
+   "global_threshold": {
+    "guard": {
+     "joint": {
+      "coverage": 0.49028400597907323,
+      "joint_risk": 0.06278026905829596,
+      "selective_risk": 0.12804878048780488,
+      "n_answered": 328
+     },
+     "selective": {
+      "coverage": 0.43946188340807174,
+      "joint_risk": 0.03587443946188341,
+      "selective_risk": 0.08163265306122448,
+      "n_answered": 294
+     }
+    },
+    "probe": {
+     "joint": {
+      "coverage": 0.4514200298953662,
+      "joint_risk": 0.05680119581464873,
+      "selective_risk": 0.12582781456953643,
+      "n_answered": 302
+     },
+     "selective": {
+      "coverage": 0.33482810164424515,
+      "joint_risk": 0.028400597907324365,
+      "selective_risk": 0.08482142857142858,
+      "n_answered": 224
+     }
+    },
+    "similarity": {
+     "joint": {
+      "coverage": 0.44095665171898357,
+      "joint_risk": 0.05530642750373692,
+      "selective_risk": 0.12542372881355932,
+      "n_answered": 295
+     },
+     "selective": {
+      "coverage": 0.2884902840059791,
+      "joint_risk": 0.004484304932735426,
+      "selective_risk": 0.015544041450777202,
+      "n_answered": 193
+     }
+    },
+    "logprob": {
+     "joint": {
+      "coverage": 0.5994020926756353,
+      "joint_risk": 0.26905829596412556,
+      "selective_risk": 0.4488778054862843,
+      "n_answered": 401
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "p_true": {
+     "joint": {
+      "coverage": 0.4260089686098655,
+      "joint_risk": 0.11808669656203288,
+      "selective_risk": 0.2771929824561403,
+      "n_answered": 285
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "agreement": {
+     "joint": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "consensus": {
+     "joint": {
+      "coverage": 0.5455904334828101,
+      "joint_risk": 0.25411061285500747,
+      "selective_risk": 0.4657534246575342,
+      "n_answered": 365
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    }
+   }
+  },
+  "bn": {
+   "n": 113,
+   "wrong_if_always_answering": 0.5663716814159292,
+   "scores": {
+    "guard": {
+     "auroc": 0.8985969387755102,
+     "ci": [
+      0.8342997696126195,
+      0.9536024196912808
+     ],
+     "aurc": 0.28693888167054604
+    },
+    "probe": {
+     "auroc": 0.9017857142857143,
+     "ci": [
+      0.8408600931301403,
+      0.9561828974294283
+     ],
+     "aurc": 0.30026518630371807,
+     "guard_gain_ci": [
+      -0.020195436507936544,
+      0.011208759299434356
+     ]
+    },
+    "similarity": {
+     "auroc": 0.7735969387755102,
+     "ci": [
+      0.6811075547682691,
+      0.8636406926406927
+     ],
+     "aurc": 0.3826286397625518,
+     "guard_gain_ci": [
+      0.05577003502535418,
+      0.19570583811867645
+     ]
+    },
+    "logprob": {
+     "auroc": 0.7547831632653061,
+     "ci": [
+      0.6569953391192542,
+      0.8368079836312168
+     ],
+     "aurc": 0.37322293783741944,
+     "guard_gain_ci": [
+      0.0592436521631949,
+      0.23841845752440805
+     ]
+    },
+    "p_true": {
+     "auroc": 0.8080357142857143,
+     "ci": [
+      0.726266977538164,
+      0.8852041729214304
+     ],
+     "aurc": 0.34650782229041743,
+     "guard_gain_ci": [
+      0.03425897696476967,
+      0.15208183074888817
+     ]
+    },
+    "agreement": {
+     "auroc": 0.7112563775510204,
+     "ci": [
+      0.6230282256058117,
+      0.7949711916016405
+     ],
+     "aurc": 0.4906417812621872,
+     "guard_gain_ci": [
+      0.1054407051282051,
+      0.27233302008442506
+     ]
+    },
+    "consensus": {
+     "auroc": 0.6474808673469388,
+     "ci": [
+      0.5483168549905838,
+      0.7419644209956708
+     ],
+     "aurc": 0.48231906009482384,
+     "guard_gain_ci": [
+      0.15393850114416482,
+      0.3541257617630385
+     ]
+    }
+   },
+   "guard": {
+    "joint": {
+     "coverage": 0.39823008849557523,
+     "joint_risk": 0.07079646017699115,
+     "selective_risk": 0.17777777777777778,
+     "n_answered": 45
+    },
+    "selective": {
+     "coverage": 0.34513274336283184,
+     "joint_risk": 0.05309734513274336,
+     "selective_risk": 0.15384615384615385,
+     "n_answered": 39
+    },
+    "joint_own_language_threshold": {
+     "coverage": 0.3893805309734513,
+     "joint_risk": 0.07079646017699115,
+     "selective_risk": 0.18181818181818182,
+     "n_answered": 44
+    }
+   },
+   "global_threshold": {
+    "guard": {
+     "joint": {
+      "coverage": 0.39823008849557523,
+      "joint_risk": 0.07079646017699115,
+      "selective_risk": 0.17777777777777778,
+      "n_answered": 45
+     },
+     "selective": {
+      "coverage": 0.34513274336283184,
+      "joint_risk": 0.05309734513274336,
+      "selective_risk": 0.15384615384615385,
+      "n_answered": 39
+     }
+    },
+    "probe": {
+     "joint": {
+      "coverage": 0.37168141592920356,
+      "joint_risk": 0.061946902654867256,
+      "selective_risk": 0.16666666666666666,
+      "n_answered": 42
+     },
+     "selective": {
+      "coverage": 0.26548672566371684,
+      "joint_risk": 0.04424778761061947,
+      "selective_risk": 0.16666666666666666,
+      "n_answered": 30
+     }
+    },
+    "similarity": {
+     "joint": {
+      "coverage": 0.2743362831858407,
+      "joint_risk": 0.09734513274336283,
+      "selective_risk": 0.3548387096774194,
+      "n_answered": 31
+     },
+     "selective": {
+      "coverage": 0.017699115044247787,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 2
+     }
+    },
+    "logprob": {
+     "joint": {
+      "coverage": 0.2743362831858407,
+      "joint_risk": 0.08849557522123894,
+      "selective_risk": 0.3225806451612903,
+      "n_answered": 31
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "p_true": {
+     "joint": {
+      "coverage": 0.20353982300884957,
+      "joint_risk": 0.061946902654867256,
+      "selective_risk": 0.30434782608695654,
+      "n_answered": 23
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "agreement": {
+     "joint": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "consensus": {
+     "joint": {
+      "coverage": 0.12389380530973451,
+      "joint_risk": 0.05309734513274336,
+      "selective_risk": 0.42857142857142855,
+      "n_answered": 14
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    }
+   }
+  },
+  "sw": {
+   "n": 499,
+   "wrong_if_always_answering": 0.4909819639278557,
+   "scores": {
+    "guard": {
+     "auroc": 0.8738389844126627,
+     "ci": [
+      0.8423214030623708,
+      0.903499654867382
+     ],
+     "aurc": 0.225910710268663
+    },
+    "probe": {
+     "auroc": 0.8664149124216616,
+     "ci": [
+      0.833274135815637,
+      0.8981459043092249
+     ],
+     "aurc": 0.2353698978266248,
+     "guard_gain_ci": [
+      -0.0013399993100151812,
+      0.016780662803532638
+     ]
+    },
+    "similarity": {
+     "auroc": 0.742246504901173,
+     "ci": [
+      0.6979345924855458,
+      0.7875290801088967
+     ],
+     "aurc": 0.33506724129055643,
+     "guard_gain_ci": [
+      0.08991722052491805,
+      0.16932011191631705
+     ]
+    },
+    "logprob": {
+     "auroc": 0.6467459424714768,
+     "ci": [
+      0.5974744086500529,
+      0.6960029878206715
+     ],
+     "aurc": 0.4033413050466942,
+     "guard_gain_ci": [
+      0.1804906560819627,
+      0.2746400726784308
+     ]
+    },
+    "p_true": {
+     "auroc": 0.8460308532861963,
+     "ci": [
+      0.8071641461035954,
+      0.8797289306927027
+     ],
+     "aurc": 0.25449468261490804,
+     "guard_gain_ci": [
+      -0.0028141782165482525,
+      0.060512061503167854
+     ]
+    },
+    "agreement": {
+     "auroc": 0.6906958058814077,
+     "ci": [
+      0.645766037881021,
+      0.7356444612106589
+     ],
+     "aurc": 0.3455039163848873,
+     "guard_gain_ci": [
+      0.13562851784496477,
+      0.2286819865852532
+     ]
+    },
+    "consensus": {
+     "auroc": 0.677076972521292,
+     "ci": [
+      0.6313795667241289,
+      0.719630417099863
+     ],
+     "aurc": 0.38879494010947135,
+     "guard_gain_ci": [
+      0.15093895719096412,
+      0.24340207712477774
+     ]
+    }
+   },
+   "guard": {
+    "joint": {
+     "coverage": 0.45490981963927857,
+     "joint_risk": 0.07414829659318638,
+     "selective_risk": 0.16299559471365638,
+     "n_answered": 227
+    },
+    "selective": {
+     "coverage": 0.38877755511022044,
+     "joint_risk": 0.052104208416833664,
+     "selective_risk": 0.13402061855670103,
+     "n_answered": 194
+    },
+    "joint_own_language_threshold": {
+     "coverage": 0.43887775551102204,
+     "joint_risk": 0.06412825651302605,
+     "selective_risk": 0.1461187214611872,
+     "n_answered": 219
+    }
+   },
+   "global_threshold": {
+    "guard": {
+     "joint": {
+      "coverage": 0.45490981963927857,
+      "joint_risk": 0.07414829659318638,
+      "selective_risk": 0.16299559471365638,
+      "n_answered": 227
+     },
+     "selective": {
+      "coverage": 0.38877755511022044,
+      "joint_risk": 0.052104208416833664,
+      "selective_risk": 0.13402061855670103,
+      "n_answered": 194
+     }
+    },
+    "probe": {
+     "joint": {
+      "coverage": 0.46092184368737477,
+      "joint_risk": 0.08016032064128256,
+      "selective_risk": 0.17391304347826086,
+      "n_answered": 230
+     },
+     "selective": {
+      "coverage": 0.3667334669338677,
+      "joint_risk": 0.04208416833667335,
+      "selective_risk": 0.11475409836065574,
+      "n_answered": 183
+     }
+    },
+    "similarity": {
+     "joint": {
+      "coverage": 0.3286573146292585,
+      "joint_risk": 0.08817635270541083,
+      "selective_risk": 0.2682926829268293,
+      "n_answered": 164
+     },
+     "selective": {
+      "coverage": 0.006012024048096192,
+      "joint_risk": 0.004008016032064128,
+      "selective_risk": 0.6666666666666666,
+      "n_answered": 3
+     }
+    },
+    "logprob": {
+     "joint": {
+      "coverage": 0.14829659318637275,
+      "joint_risk": 0.056112224448897796,
+      "selective_risk": 0.3783783783783784,
+      "n_answered": 74
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "p_true": {
+     "joint": {
+      "coverage": 0.2785571142284569,
+      "joint_risk": 0.03406813627254509,
+      "selective_risk": 0.1223021582733813,
+      "n_answered": 139
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "agreement": {
+     "joint": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    },
+    "consensus": {
+     "joint": {
+      "coverage": 0.374749498997996,
+      "joint_risk": 0.1342685370741483,
+      "selective_risk": 0.3582887700534759,
+      "n_answered": 187
+     },
+     "selective": {
+      "coverage": 0.0,
+      "joint_risk": 0.0,
+      "selective_risk": 0.0,
+      "n_answered": 0
+     }
+    }
+   }
+  }
+ },
+ "audit": {
+  "joint": {
+   "wrong_delivered": {
+    "n": 1721,
+    "delta": -0.42068564787914003,
+    "ci": [
+     -0.4439279488669378,
+     -0.3980244044160372
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "right_delivered": {
+    "n": 1721,
+    "delta": -0.1167925624636839,
+    "ci": [
+     -0.13190005810575248,
+     -0.10168506682161534
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "answered": {
+    "n": 1721,
+    "delta": -0.537478210342824,
+    "ci": [
+     -0.5607205113306217,
+     -0.5142359093550262
+    ],
+    "p_value": 9.999000099990002e-05
+   }
+  },
+  "selective": {
+   "wrong_delivered": {
+    "n": 1721,
+    "delta": -0.4427658338175479,
+    "ci": [
+     -0.46600813480534575,
+     -0.41952353282975013
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "right_delivered": {
+    "n": 1721,
+    "delta": -0.15804764671702498,
+    "ci": [
+     -0.17547937245787332,
+     -0.14061592097617664
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "answered": {
+    "n": 1721,
+    "delta": -0.600813480534573,
+    "ci": [
+     -0.6240557815223707,
+     -0.5775711795467752
+    ],
+    "p_value": 9.999000099990002e-05
+   }
+  },
+  "closed_to_rag": {
+   "wrong_delivered": {
+    "n": 1721,
+    "delta": -0.3486345148169669,
+    "ci": [
+     -0.3753631609529343,
+     -0.32364904125508426
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "right_delivered": {
+    "n": 1721,
+    "delta": 0.3486345148169669,
+    "ci": [
+     0.32364904125508426,
+     0.3753631609529343
+    ],
+    "p_value": 9.999000099990002e-05
+   },
+   "answered": {
+    "n": 1721,
+    "delta": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "p_value": 1.0
+   }
+  }
+ },
+ "closed_book_wrong": {
+  "en": 0.7272727272727273,
+  "te": 0.9476831091180867,
+  "bn": 0.8761061946902655,
+  "sw": 0.7695390781563126
+ }
+}

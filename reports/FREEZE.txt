@@ -1,0 +1,13 @@
+Thu Nov  5 12:50:16 EST 2026
+layer index 5 (layer 24); joint alpha 0.10; selective alpha 0.20; delta 0.1; step 0.05; strict health bar 0.85
+71fd29a005759f2ba06fdab12ad7c6ed7e39e630bca7473a0aa162234010f0a1  final.py
+2ecf458732d2602e178806f20c78eaacbea3d3b5c9aed2bae51bfaea11982cd3  calibration.py
+44b891c42bfd656bd66fd19e053bd6492d2b345b11f96550d5849ce3733e7014  combine.py
+05532247f8cdd90c8f06d985af91acc7de707df6cd75f4fbd16ca52ca58c7cbd  scoring.py
+6a99ddd87ee45a13312b99d81e767eb31be22db2c9cb666bd46f47199f8eb188  analyze.py
+ccc5b4862d55741783ed07f5b0ed3faf54b00b13474d00bf21846e6e89b888bc  gate_probe.py
+ade7dbf684a3f62291a48eda986181c6fffbc82c73e9f5305077241d39f5b796  strict_health.py
+Thu Nov  5 12:53:41 EST 2026
+after first read: reporting only. AuditKIT paired_bootstrap never centres its null, so p is about 0.5 for any effect; replaced by calibration.paired_test.
+643e05ac19e07cfdda740a9948fb05ac8889dba5dec28cc4c8ce9961531bdb0d  final.py
+781d91a680ecf0a2572196e43e9163c9f91444f785ffdb77acda977e15f5f87d  calibration.py

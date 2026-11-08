@@ -1,0 +1,54 @@
+{
+ "heads": 576,
+ "top": 50,
+ "chance_shared": 4.3255,
+ "pairs": {
+  "en-te": {
+   "spearman": 0.7392411398286993,
+   "shared_top": 41
+  },
+  "en-bn": {
+   "spearman": 0.7325172682289706,
+   "shared_top": 41
+  },
+  "en-sw": {
+   "spearman": 0.7223410694999122,
+   "shared_top": 45
+  },
+  "te-bn": {
+   "spearman": 0.7771335367844674,
+   "shared_top": 38
+  },
+  "te-sw": {
+   "spearman": 0.7224687288071736,
+   "shared_top": 41
+  },
+  "bn-sw": {
+   "spearman": 0.7228856152512999,
+   "shared_top": 39
+  }
+ },
+ "peak_block": {
+  "en": [
+   23,
+   31,
+   27
+  ],
+  "te": [
+   23,
+   31,
+   27
+  ],
+  "bn": [
+   23,
+   32,
+   22
+  ],
+  "sw": [
+   23,
+   31,
+   27
+  ]
+ },
+ "shared_by_all": 33
+}
