@@ -4,15 +4,11 @@ import json
 from pathlib import Path
 
 import numpy as np
-import torch
-import torch.nn.functional as F
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from transformers import AutoModel, AutoTokenizer
 
 from analyze import column, keep_rows, load
-from build_rag import ENCODER, embed
 from calibration import (aurc, auroc, bootstrap_ci, conformal_threshold,
                          selective_report, selective_threshold)
 from gate_probe import held_out_scores
@@ -22,18 +18,28 @@ LANGS = ("en", "te", "bn", "sw")
 
 
 def similarities(records, contexts, cache):
-    if Path(cache).exists():
-        stored = json.load(open(cache))
+    cache = Path(cache)
+    if cache.exists():
+        stored = json.loads(cache.read_text(encoding="utf-8"))
         if all(r["id"] in stored for r in records):
             return np.array([stored[r["id"]] for r in records])
+    import torch
+    import torch.nn.functional as F
+    from transformers import AutoModel, AutoTokenizer
+
+    from build_rag import ENCODER, embed
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    batch_size = 256 if device == "cuda" else 32
     tokenizer = AutoTokenizer.from_pretrained(ENCODER)
-    encoder = AutoModel.from_pretrained(ENCODER).to("cuda").eval()
-    questions = embed([r["question"] for r in records], tokenizer, encoder, "query: ")
-    passages = embed([contexts[r["id"]] for r in records], tokenizer, encoder, "passage: ")
+    encoder = AutoModel.from_pretrained(ENCODER).to(device).eval()
+    questions = embed([r["question"] for r in records], tokenizer, encoder, "query: ", batch_size)
+    passages = embed([contexts[r["id"]] for r in records], tokenizer, encoder, "passage: ", batch_size)
     values = F.cosine_similarity(questions, passages).tolist()
     del encoder
-    torch.cuda.empty_cache()
-    json.dump({r["id"]: v for r, v in zip(records, values)}, open(cache, "w"))
+    if device == "cuda":
+        torch.cuda.empty_cache()
+    cache.write_text(json.dumps({r["id"]: v for r, v in zip(records, values)}), encoding="utf-8")
     return np.array(values)
 
 
@@ -42,8 +48,10 @@ def logit(p):
     return np.log(p / (1 - p))
 
 
-def load_splits(train_run="../runs/rag_probe", calibration_run="../runs/rag_calibration"):
-    rows = [json.loads(line) for line in open("../data/questions.jsonl", encoding="utf-8")]
+def load_splits(train_run="../runs/rag_probe", calibration_run="../runs/rag_calibration",
+                data="../data/questions.jsonl"):
+    with open(data, encoding="utf-8") as handle:
+        rows = [json.loads(line) for line in handle]
     test_questions = {r["question"] for r in rows if r["split"] == "test"}
     cal, cal_acts = load(calibration_run)
     keep = keep_rows(cal, test_questions)

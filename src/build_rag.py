@@ -12,10 +12,8 @@ from pathlib import Path
 
 import torch
 import torch.nn.functional as F
-from datasets import load_dataset
 from transformers import AutoModel, AutoTokenizer
 
-from gate import LANGUAGES
 from scoring import normalize
 
 ENCODER = "intfloat/multilingual-e5-small"
@@ -28,7 +26,7 @@ def embed(texts, tokenizer, encoder, prefix, batch_size=256):
         enc = tokenizer(
             [prefix + t for t in texts[start : start + batch_size]],
             padding=True, truncation=True, max_length=256, return_tensors="pt",
-        ).to("cuda")
+        ).to(encoder.device)
         hidden = encoder(**enc).last_hidden_state
         mask = enc["attention_mask"].unsqueeze(-1)
         chunks.append(F.normalize((hidden * mask).sum(1) / mask.sum(1), dim=-1))
@@ -40,6 +38,10 @@ def article_split(title):
 
 
 def main():
+    from datasets import load_dataset
+
+    from gate import LANGUAGES
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--probe-size", type=int, default=1500)
     parser.add_argument("--calibration-size", type=int, default=700)

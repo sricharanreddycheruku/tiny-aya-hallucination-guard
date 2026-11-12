@@ -4,10 +4,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-from auditkit._bootstrap import score_pairs
-from auditkit.comparison import RunComparison
-from auditkit.report import Prediction, RunResult
-from auditkit.score import Stat
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -57,6 +53,9 @@ def auroc_gain(a, b, wrong):
 
 
 def audit_run(name, records, answered):
+    from auditkit.report import Prediction, RunResult
+    from auditkit.score import Stat
+
     stats = {metric: Stat(metric) for metric in METRICS}
     predictions = []
     for r, spoke in zip(records, answered):
@@ -80,6 +79,9 @@ def audit_run(name, records, answered):
 
 
 def main():
+    from auditkit._bootstrap import score_pairs
+    from auditkit.comparison import RunComparison
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", nargs="+", default=["../data/questions.jsonl"])
     parser.add_argument("--train-run", default="../runs/rag_probe")

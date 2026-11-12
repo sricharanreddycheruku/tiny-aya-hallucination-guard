@@ -38,7 +38,7 @@ from the model under test. No human verified these questions.
 ## Limits
 
 - Generator and judge belong to the same model family, so errors may be shared.
-- Passage retrieval removes the source article for 30% of questions on purpose, to create unanswerable cases.
+- Passage retrieval excludes the source article for approximately 30% of questions. A different retrieved article can still contain the gold answer.
 - Scores are string matches, which can mark a valid paraphrase wrong.
 - Bengali test size is small (113).
 

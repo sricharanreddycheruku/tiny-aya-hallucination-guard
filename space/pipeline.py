@@ -1,11 +1,12 @@
 """Retrieve, answer, read the layer-24 activation, score the risk, then answer or abstain."""
 import json
 import os
+from pathlib import Path
+from time import perf_counter
 
 import numpy as np
 import torch
 import torch.nn.functional as F
-from transformers import AutoModel, AutoModelForCausalLM, AutoTokenizer
 
 from guard import LAYER, Guard
 
@@ -17,19 +18,31 @@ MAX_NEW_TOKENS = 24
 
 class Pipeline:
     def __init__(self, folder=".", device=None):
+        folder = Path(folder)
+        required = ("guard_fire.npz", "health_chunks.jsonl", "health_vectors.npy")
+        missing = [name for name in required if not (folder / name).is_file()]
+        if missing:
+            raise FileNotFoundError(f"Missing demo assets in {folder.resolve()}: {', '.join(missing)}. Run src/build_space.py.")
+        from transformers import AutoModel, AutoModelForCausalLM, AutoTokenizer
+
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         token = os.environ.get("HF_TOKEN")
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL, token=token, padding_side="left")
-        self.model = AutoModelForCausalLM.from_pretrained(MODEL, token=token, dtype=torch.bfloat16).to(self.device).eval()
+        dtype = torch.float32 if torch.device(self.device).type == "cpu" else torch.bfloat16
+        self.model = AutoModelForCausalLM.from_pretrained(MODEL, token=token, dtype=dtype).to(self.device).eval()
         eos = self.model.generation_config.eos_token_id
         eos = eos if isinstance(eos, list) else [eos]
         self.stop_ids = torch.tensor(sorted(set(eos + [self.tokenizer.pad_token_id])), device=self.device)
         self.encoder_tokenizer = AutoTokenizer.from_pretrained(ENCODER)
         self.encoder = AutoModel.from_pretrained(ENCODER).to(self.device).eval()
-        self.guard = Guard(f"{folder}/guard_fire.npz")
-        self.corpus = [json.loads(line) for line in open(f"{folder}/health_chunks.jsonl", encoding="utf-8")]
-        self.vectors = torch.tensor(np.load(f"{folder}/health_vectors.npy"), device=self.device)
+        self.guard = Guard(folder / "guard_fire.npz")
+        with (folder / "health_chunks.jsonl").open(encoding="utf-8") as handle:
+            self.corpus = [json.loads(line) for line in handle]
+        self.vectors = torch.as_tensor(np.load(folder / "health_vectors.npy"), device=self.device)
+        if self.vectors.ndim != 2 or len(self.vectors) != len(self.corpus):
+            raise ValueError("health_vectors.npy must contain one vector per corpus row.")
         self.languages = np.array([row["language"] for row in self.corpus])
+        self.topics = np.array([row["topic"] for row in self.corpus])
 
     @torch.no_grad()
     def embed(self, text, prefix):
@@ -41,10 +54,29 @@ class Pipeline:
         return F.normalize((hidden * mask).sum(1) / mask.sum(1), dim=-1)[0]
 
     def retrieve(self, question, language):
-        scores = self.vectors @ self.embed(question, "query: ")
-        scores[torch.tensor(self.languages != language, device=self.device)] = -1.0
-        best = int(scores.argmax())
-        return self.corpus[best]
+        return self.rank_passages(self.embed(question, "query: "), language)[0][0]
+
+    def rank_passages(self, query, language, limit=1, excluded_topic=None):
+        eligible = np.flatnonzero((self.languages == language) & (self.topics != excluded_topic))
+        if not len(eligible):
+            raise ValueError(f"No eligible passages for {language!r}.")
+        indices = torch.as_tensor(eligible, device=self.device)
+        scores = self.vectors[indices] @ query
+        if limit == 1:
+            offset = int(scores.argmax())
+            return [(self.corpus[eligible[offset]], float(scores[offset]))]
+        order = torch.argsort(scores, descending=True, stable=True).tolist()
+        passages = []
+        seen_text = set()
+        for offset in order:
+            passage = self.corpus[eligible[offset]]
+            if passage["text"] in seen_text:
+                continue
+            seen_text.add(passage["text"])
+            passages.append((passage, float(scores[offset])))
+            if len(passages) == limit:
+                break
+        return passages
 
     @torch.no_grad()
     def generate(self, question, context):
@@ -75,13 +107,27 @@ class Pipeline:
         ).strip()
         return answer, activation.astype(np.float16).astype(np.float32), mean_logprob
 
-    def respond(self, question, language, passage=None, rule="joint"):
-        passage = passage or self.retrieve(question, language)
+    def score_passage(self, question, passage, similarity, rule):
         answer, activation, mean_logprob = self.generate(question, passage["text"])
-        similarity = float(self.embed(question, "query: ") @ self.embed(passage["text"], "passage: "))
         risk = float(self.guard.risk(activation[None], np.array([similarity]), np.array([mean_logprob]))[0])
         return {
             "answer": answer, "risk": risk, "similarity": similarity, "mean_logprob": mean_logprob,
             "threshold": float(self.guard.w[f"threshold_{rule}"]),
             "delivered": bool(answer) and bool(self.guard.decide(risk, rule)), "passage": passage,
         }
+
+    def respond(self, question, language, passage=None, rule="joint", retry=False, excluded_topic=None):
+        query = self.embed(question, "query: ")
+        if passage is not None:
+            similarity = float(query @ self.embed(passage["text"], "passage: "))
+            return self.score_passage(question, passage, similarity, rule)
+
+        ranked = self.rank_passages(query, language, limit=2 if retry else 1, excluded_topic=excluded_topic)
+        first_passage, first_similarity = ranked[0]
+        first = self.score_passage(question, first_passage, first_similarity, rule)
+        if first["delivered"] or len(ranked) == 1:
+            return first
+        second_passage, second_similarity = ranked[1]
+        started = perf_counter()
+        second = self.score_passage(question, second_passage, second_similarity, rule)
+        return dict(second, first_attempt=first, retrieval_attempts=2, retry_seconds=perf_counter() - started)

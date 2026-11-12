@@ -36,13 +36,12 @@ def per_language_thresholds(scores, wrong, languages, alpha):
 
 
 def selective_threshold(scores, wrong, alpha, delta=0.1, step=0.05):
-    """Loosest threshold whose wrong-among-answered rate stays at or below alpha.
+    """Reproduce the original empirical wrong-among-answered operating point.
 
     Coverage levels step, 2 * step, ... are tested in order, stopping at the
-    first failure. Each test is a one-sided Clopper-Pearson bound at level
-    delta, so the fixed sequence needs no multiplicity correction. A coarse
-    grid keeps small, noisy prefixes from ending the sequence early. Returns
-    -inf when the first test fails, meaning always abstain.
+    first failure. The thresholds come from the same scores used to compute
+    the bounds. Use certify_selective_threshold with an independent pilot
+    for a fixed-sequence statistical claim.
     """
     scores = np.asarray(scores, dtype=float)
     wrong = np.asarray(wrong, dtype=float)
@@ -58,6 +57,38 @@ def selective_threshold(scores, wrong, alpha, delta=0.1, step=0.05):
         if upper > alpha:
             break
         chosen = float(s[i])
+    return chosen
+
+
+def coverage_threshold(scores, target):
+    """Set a threshold from calibration scores alone, retaining score ties."""
+    scores = np.sort(np.asarray(scores, dtype=float))
+    if not len(scores) or not 0 < target <= 1 or not np.isfinite(scores).all():
+        raise ValueError("Coverage requires finite scores and a target in (0, 1].")
+    rank = max(1, int(np.ceil(np.nextafter(target * len(scores), -np.inf))))
+    return float(scores[rank - 1])
+
+
+def certify_selective_threshold(pilot_scores, scores, wrong, alpha=0.2, delta=0.1, step=0.05):
+    """Test fixed pilot-derived thresholds on independent labeled examples.
+
+    Conditional on the pilot and for IID certification rows, at each fixed
+    threshold the wrong count among accepted rows is binomial conditional on
+    the acceptance count. Stop the sequence at the first failure.
+    """
+    scores = np.asarray(scores, dtype=float)
+    wrong = np.asarray(wrong, dtype=bool)
+    candidates = sorted({coverage_threshold(pilot_scores, min(level, 1.0))
+                         for level in np.arange(step, 1 + step / 2, step)})
+    chosen = -np.inf
+    for threshold in candidates:
+        answered = scores <= threshold
+        n = int(answered.sum())
+        k = int((answered & wrong).sum())
+        upper = beta.ppf(1 - delta, k + 1, n - k) if k < n else 1.0
+        if upper > alpha:
+            break
+        chosen = threshold
     return chosen
 
 

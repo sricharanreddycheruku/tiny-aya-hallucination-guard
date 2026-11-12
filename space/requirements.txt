@@ -2,3 +2,4 @@ torch
 transformers>=5.0
 numpy
 spaces
+gradio==6.31.0

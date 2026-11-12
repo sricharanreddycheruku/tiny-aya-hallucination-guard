@@ -10,7 +10,7 @@ The pipeline is: question, retrieve a passage, Tiny Aya answers while we read it
 
 ## Results
 
-On the locked TyDiQA test set of 1,721 questions, answering everything delivers wrong answers on 48.6% of questions. With the guard, 6.6% of questions receive a wrong answer (a 42.07-point drop, 95% interval 39.80 to 44.39). Right answers delivered fall from 51.4% to 39.7%. One global threshold keeps every language between 5.9% and 7.4%, under the 10% target.
+On the locked TyDiQA test set of 1,721 questions, answering everything delivers wrong answers on 48.6% of questions. With the guard, 6.6% of questions receive a wrong answer (a 42.07-point drop, 95% interval 39.80 to 44.39). Right answers delivered fall from 51.4% to 39.7%. The guard answers 46.3% of questions, and 14.2% of delivered answers are wrong. Wrong delivery ranges from 5.9% to 7.4% across languages under the shared threshold.
 
 Thresholding mean log-probability, a common alternative, fails under one global threshold: it delivers wrong answers on 26.9% of Telugu questions, where the guard delivers 6.3%. Confidence means different things across languages, while the activation-based guard stays within target under the same threshold. The method also holds on a second model, Tiny Aya Global, with its own refitted guard: wrong answers delivered fall from 49.0% to 6.7%.
 

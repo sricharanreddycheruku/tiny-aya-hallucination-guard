@@ -1,0 +1,8 @@
+.venv/
+third_party/
+data/
+runs/
+space_build/
+__pycache__/
+.pytest_cache/
+src/cache/

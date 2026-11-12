@@ -38,8 +38,8 @@ settings in `space/pipeline.py`.
 
 | Rule | Risk limit | Target | Result on the locked test set |
 |---|---|---|---|
-| `joint` | 0.4473 | Wrong and delivered at most 10% | 6.6%, with 46.3% answered |
-| `selective` | 0.3632 | Wrong among answered at most 20% | 10.9%, with 39.9% answered |
+| `joint` | 0.4473 | TyDiQA target of 10% wrong out of all questions | 6.6%, with 46.3% answered |
+| `selective` | 0.3632 | TyDiQA target of 20% wrong among delivered answers | 10.9%, with 39.9% answered |
 
 ## Limits
 

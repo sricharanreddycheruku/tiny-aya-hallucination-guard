@@ -17,5 +17,7 @@ This is a research demo, not medical advice. Answers can be wrong even when deli
 sometimes withheld.
 
 The Space needs an `HF_TOKEN` secret from an account that has accepted the Tiny Aya licence.
+For local use, follow the [fresh-checkout instructions](../README.md#run-the-demo-from-a-fresh-checkout).
+The thresholds use TyDiQA calibration targets. An experimental checkbox enables one additional passage after abstention.
 
 Licences: Tiny Aya is CC-BY-NC. The passages are from Wikipedia under CC BY-SA 4.0.

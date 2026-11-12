@@ -6,9 +6,18 @@ A retrieve-first hallucination guard for Tiny Aya in English, Telugu, Bengali an
 question -> retrieve passage -> Tiny Aya answer + activation -> risk score -> one global threshold -> answer or abstain
 ```
 
-On the locked TyDiQA test set (1,721 questions), wrong answers delivered fall from 48.6% to 6.6%, while right
-answers delivered fall from 51.4% to 39.7%. The guard answers 46.3% of questions. The full write-up is in
-[ARTICLE.md](ARTICLE.md).
+## Original locked TyDiQA results
+
+| Metric (1,721 questions) | RAG always answers | RAG with guard |
+|---|---:|---:|
+| Questions answered | 100% | 46.3% |
+| Wrong delivered, out of all questions | 48.6% | 6.6% |
+| Right delivered, out of all questions | 51.4% | 39.7% |
+| Wrong among delivered answers | 48.6% | 14.2% |
+
+The guard withheld 724 wrong answers and 201 right answers. See the [write-up](ARTICLE.md), [abstract](ABSTRACT.md),
+[model collection](https://huggingface.co/collections/sricharan1234/tiny-aya-hallucination-guard-models-6af0a41dfe3d3d356a5000db)
+and [dataset collection](https://huggingface.co/collections/sricharan1234/tiny-aya-hallucination-guard-datasets-6af0a41ef264c137a04554d2).
 
 ## Layout
 
@@ -31,10 +40,34 @@ python -m venv .venv
 git clone https://github.com/Lexsi-Labs/CuratorKIT third_party/CuratorKIT
 git clone https://github.com/Lexsi-Labs/CircuitKIT third_party/CircuitKIT
 git clone https://github.com/Lexsi-Labs/AuditKIT third_party/AuditKIT
+git -C third_party/CuratorKIT checkout --detach dd9e835301fcddc74a37501d9e207a5a060d209f
+git -C third_party/CircuitKIT checkout --detach e71d5e17fe6e2abfde47ec9a7fbaf31649601b78
+git -C third_party/AuditKIT checkout --detach 71316da345784ff220d5ed59337441a59ab31526
 .venv/bin/pip install -e third_party/CuratorKIT -e third_party/CircuitKIT -e third_party/AuditKIT
 export HF_TOKEN=...   # an account that has accepted the Tiny Aya licence
 .venv/bin/python -m pytest tests -q
 ```
+
+The toolkit pins use the last first-parent commits available before the recorded experiment freeze. The original write-up
+did not record upstream SHAs. CuratorKIT builds the health benchmark, CircuitKIT runs circuit discovery and probe comparisons,
+and AuditKIT produces the paired reports.
+
+## Run the demo from a fresh checkout
+
+Use Python 3.12 and a PyTorch environment with CUDA for the GPU path. Run the commands at the repository root.
+Set `HF_TOKEN` locally with read access from an account that has accepted the
+[Tiny Aya Fire model terms](https://huggingface.co/CohereLabs/tiny-aya-fire).
+
+```bash
+python -m pip install -r space/requirements.txt
+python src/build_space.py --device cuda
+export AYA_ASSETS_DIR=space_build
+python space/app.py
+```
+
+In PowerShell, set the asset directory with `$env:AYA_ASSETS_DIR = 'space_build'`. The builder downloads the pinned
+public guard and health corpus and indexes the passages. It accepts `--device cpu` for indexing and
+`--guard` / `--chunks` for local inputs. The optional second-passage retry is experimental and off by default.
 
 ## Rebuild the results from the saved reports
 
@@ -43,6 +76,8 @@ Open `notebooks/results.ipynb`. It needs no GPU.
 ## Reproduce from scratch
 
 Run from `src/`. All seeds are fixed in the script defaults. Greedy answers can still differ slightly across GPUs and batch sizes.
+The published reports used the scorer at [65bf238](https://github.com/sricharanreddycheruku/tiny-aya-hallucination-guard/tree/65bf2381cc006d362488f050d0ebb529f3e51e7c).
+Use that revision to replay the original scorer. A new run with the current scorer produces revised automatic labels.
 
 ```bash
 PY=../.venv/bin/python
@@ -106,6 +141,39 @@ $PY figures.py
 ```
 
 Delete `src/cache/` before reusing a pairs filename, because CircuitKIT caches by filename.
+
+## Follow-up evaluation
+
+After generating the probe, calibration and test activation files, run these commands from the repository root.
+The saved Hugging Face answer logs can be rescored on CPU. They do not contain the activation arrays.
+
+```bash
+python src/rescore.py runs/rag_test/answers.jsonl --summary-only
+python src/build_space.py --fetch-only
+python src/followup.py
+python src/evaluate_retry.py --questions data/health_big.jsonl --assets space_build
+```
+
+`followup.py` fits the full guard, activation-only and no-activation comparators on revised labels. It chooses thresholds
+for 55% and 60% coverage on calibration scores, then reports actual test coverage, wrong and right delivery rates, and
+error among delivered answers. Its report includes pooled, per-language, source-exclusion and gold-string slices. The
+risk-coverage plot is a descriptive test-set comparison. The independent-pilot experiment separates articles when selecting
+candidate thresholds and estimating risk. Its binomial bound assumes independent certification rows. Repeated questions
+within an article can violate that assumption.
+
+The report also replays the published joint guard on the same candidate activations and shows results under both the
+stored and revised labels. Use the revised-label replay for comparisons with the follow-up policies. The retry benchmark
+uses a built passage index. Run the demo preparation command without `--fetch-only` before benchmarking retries.
+
+An offline rescore of the public answer logs changed 7 of 1,721 TyDiQA labels (837 to 840 marked wrong) and 4 of 1,173
+health labels (669 to 667 marked wrong). These are changes to automatic labels on identical generated answers. New guard
+and retry performance still need to be measured with Tiny Aya.
+
+Fill `factually_correct` and `supported_by_passage` independently in `runs/followup/review.csv` using `yes`, `no` or
+`unclear`. Then run `python src/review_agreement.py runs/followup/review.csv runs/rag_test/answers.jsonl` to compare the
+old stored labels and the revised scorer with the factual reviews. For that comparison, use the original saved answer
+log with its original labels. For a demo recording, show one correct delivery, one wrong candidate withheld, and one
+correct candidate withheld, using completed reviews to establish their outcomes.
 
 ## Rules the numbers depend on
 

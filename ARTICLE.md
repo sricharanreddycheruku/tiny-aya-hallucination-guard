@@ -10,7 +10,7 @@ We built a guard that gives the system a third option besides right and wrong: t
 question -> retrieve passage -> Tiny Aya answer + activation -> risk score -> one global threshold -> answer or abstain
 ```
 
-1. **Retrieve.** multilingual-e5-small finds a passage. For 30% of questions we remove the source article, so the system must face questions it cannot answer.
+1. **Retrieve.** multilingual-e5-small finds a passage. We exclude the source article for approximately 30% of questions to test retrieval with missing source material. Another article can still contain the gold answer.
 2. **Answer.** Tiny Aya answers from the passage. We read the layer-24 hidden state at the last answer token.
 3. **Score.** A linear probe on that activation is stacked with retrieval similarity and mean log-probability.
 4. **Decide.** One threshold, set on held-out data, covers all four languages.
@@ -22,9 +22,9 @@ The result on the locked test set of 1,721 questions:
 | Wrong answers delivered | 48.6% | **6.6%** | −42.07 pts (−44.39, −39.80) |
 | Right answers delivered | 51.4% | 39.7% | −11.68 pts (−13.19, −10.17) |
 
-The guard removes about 3.6 wrong answers for every right answer it holds back. That cost is real, and section 7 reports it alongside each result.
+The guard removes about 3.6 wrong answers for every right answer it holds back. It answers 46.3% of questions, with a 14.2% error rate among delivered answers. The [follow-up workflow](README.md#follow-up-evaluation) tests higher coverage and keeps revised automatic labels separate from these original results.
 
-**Try it:** the Gradio demo code (`space/app.py`, `space/pipeline.py`) is included in the project and runs locally on one GPU with an `HF_TOKEN` from an account that has accepted the Tiny Aya licence. We did not host it, because a hosted Space needs paid hardware.
+**Try it:** the [local demo setup](README.md#run-the-demo-from-a-fresh-checkout) builds the index and starts Gradio with the published guard. The optional second-passage retry is experimental.
 
 ## 2. Hackathon repositories used
 
@@ -82,8 +82,8 @@ The layer, thresholds and risk targets were recorded with file hashes in `report
 
 Two risk targets are reported, and they answer different questions:
 
-- **Joint rule:** P(answered and wrong) at most 10%, conformal, threshold 0.447.
-- **Selective rule:** wrong among answered at most 20%, Clopper-Pearson with fixed-sequence testing over a 5% coverage grid, threshold 0.363.
+- **Joint rule:** TyDiQA calibration target of 10% wrong-and-delivered, threshold 0.447.
+- **Selective rule:** TyDiQA calibration target of 20% wrong among delivered answers, threshold 0.363. The original procedure computes Clopper-Pearson bounds on the same sample that defines the candidate thresholds. We report this as an empirical operating point. The follow-up procedure derives candidates on a separate pilot.
 
 ### Main result, per language
 
@@ -172,7 +172,7 @@ We ran EAP-IG on counterfactual evidence pairs, where the corrupted passage swap
 - **The circuit result replicates.** We reran pair sampling and discovery with seeds 12, 13 and 14. The seed changes which questions are sampled for the pairs and which same-length gold answer replaces the true one, so the pairs differ while the method and model do not. Across the three reruns each pair of languages shares 38 to 45 of its top 50, all four share 32 to 35 (32 originally), rank correlation is .722 to .796, and block 23 is the first peak block in every language in every rerun. Neither claim above broke on any seed. The second and third peak blocks vary from seed to seed, so we claim only block 23. Per-seed files are in `reports/circuit_replication/`.
 - **Circuits did not improve the guard.** No circuit-selected layer set beat the fixed layer 24 with an interval above zero in any language. We kept layer 24. The apparent .8 correlation between importance and probe AUROC mostly reflects early layers against late ones, since AUROC is flat from layer 16.
 
-This explains why one global threshold can work: the mechanism being read is largely common to the four languages. Our evidence for that is correlational. We did not run ablations that would prove causation.
+The four languages show a replicated association between block 23 and the evidence-use task. Establishing a causal link to probe performance would require comparing interventions on the shared heads with matched control heads.
 
 ### Telugu example
 

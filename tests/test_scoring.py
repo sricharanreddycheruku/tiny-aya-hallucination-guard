@@ -46,3 +46,26 @@ def test_shared_unit_does_not_rescue_a_wrong_number():
 def test_suffix_attached_to_a_number_is_separated():
     assert not is_wrong("1971లో", ["1971"], "te")
     assert is_wrong("1992లో", ["1971"], "te")
+
+
+def test_date_components_and_abbreviations():
+    gold = ["December 16, 1773"]
+    assert is_wrong("December 17, 1773", gold, "en")
+    assert is_wrong("November 16, 1773", gold, "en")
+    assert not is_wrong("1773", gold, "en")
+    assert not is_wrong("23 Machi 1942", ["1942"], "sw")
+    assert not is_wrong("Mid-1970s", ["1970s"], "en")
+    assert exact_match("2026-11-12", ["2026 11 12"])
+    assert is_wrong("১৯৪২ সালের ৯ জানুয়ারি", ["১৯৪২ সালের ৮ জানুয়ারি"], "bn")
+
+
+def test_decimal_quantities_and_units():
+    assert is_wrong("2 mg", ["2.5 mg"], "en")
+    assert is_wrong("2.5 g", ["2.5 mg"], "en")
+    assert is_wrong("−2.5 mg", ["2.5 mg"], "en")
+    assert exact_match("২.৫০", ["2.5"], "bn")
+    assert exact_match("౨.౫౦ కి.మీ.", ["2.5 కి.మీ"], "te")
+    assert exact_match("1,000.50", ["1000.5"], "en")
+    assert exact_match("2,7", ["2.7"], "sw")
+    assert not is_wrong("98.8 TWh.", ["98.8 terawatt-hours"], "en")
+    assert not is_wrong("mlima Teide ina urefu wa mita 3,718.", ["mita 3,718"], "sw")

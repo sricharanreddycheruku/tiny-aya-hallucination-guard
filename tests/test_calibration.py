@@ -4,7 +4,8 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from calibration import (aurc, auroc, bootstrap_ci, conformal_threshold,
+from calibration import (aurc, auroc, bootstrap_ci, certify_selective_threshold,
+                         conformal_threshold, coverage_threshold,
                          per_language_thresholds, selective_report,
                          paired_test, selective_threshold)
 
@@ -98,3 +99,17 @@ def test_paired_test_separates_real_effect_from_noise():
     noise = rng.normal(0, 1, 500)
     noise -= noise.mean()
     assert paired_test(list(zip(np.zeros(500), noise)), n_boot=500)["p_value"] > 0.5
+
+
+def test_coverage_threshold_keeps_ties():
+    scores = [0.1, 0.2, 0.2, 0.9]
+    assert coverage_threshold(scores, 0.5) == 0.2
+    assert coverage_threshold(scores, 0.6) == 0.2
+
+
+def test_certification_uses_pilot_candidates_and_stops_on_failure():
+    pilot = [0.1, 0.2, 0.3, 0.4]
+    scores = np.repeat([0.09, 0.19, 0.29, 0.39], 100)
+    wrong = np.array([False] * 200 + [True] * 100 + [False] * 100)
+    assert certify_selective_threshold(pilot, scores, wrong, step=0.25) == 0.2
+    assert certify_selective_threshold(pilot, [0.3], [False], step=0.25) == -np.inf
