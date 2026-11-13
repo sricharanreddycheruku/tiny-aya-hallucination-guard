@@ -1,0 +1,961 @@
+{
+  "always_answer": {
+    "all": {
+      "n": 1721,
+      "answered": 1721,
+      "wrong_delivered": 840,
+      "right_delivered": 881,
+      "coverage": 1.0,
+      "wrong_per_question": 0.48808832074375363,
+      "right_per_question": 0.5119116792562464,
+      "wrong_among_answered": 0.48808832074375363
+    },
+    "bn": {
+      "n": 113,
+      "answered": 113,
+      "wrong_delivered": 64,
+      "right_delivered": 49,
+      "coverage": 1.0,
+      "wrong_per_question": 0.5663716814159292,
+      "right_per_question": 0.4336283185840708,
+      "wrong_among_answered": 0.5663716814159292
+    },
+    "en": {
+      "n": 440,
+      "answered": 440,
+      "wrong_delivered": 201,
+      "right_delivered": 239,
+      "coverage": 1.0,
+      "wrong_per_question": 0.45681818181818185,
+      "right_per_question": 0.5431818181818182,
+      "wrong_among_answered": 0.45681818181818185
+    },
+    "sw": {
+      "n": 499,
+      "answered": 499,
+      "wrong_delivered": 246,
+      "right_delivered": 253,
+      "coverage": 1.0,
+      "wrong_per_question": 0.49298597194388777,
+      "right_per_question": 0.5070140280561122,
+      "wrong_among_answered": 0.49298597194388777
+    },
+    "te": {
+      "n": 669,
+      "answered": 669,
+      "wrong_delivered": 329,
+      "right_delivered": 340,
+      "coverage": 1.0,
+      "wrong_per_question": 0.49177877428998507,
+      "right_per_question": 0.5082212257100149,
+      "wrong_among_answered": 0.49177877428998507
+    },
+    "source_article_available": {
+      "n": 1212,
+      "answered": 1212,
+      "wrong_delivered": 386,
+      "right_delivered": 826,
+      "coverage": 1.0,
+      "wrong_per_question": 0.3184818481848185,
+      "right_per_question": 0.6815181518151815,
+      "wrong_among_answered": 0.3184818481848185
+    },
+    "source_article_excluded": {
+      "n": 509,
+      "answered": 509,
+      "wrong_delivered": 454,
+      "right_delivered": 55,
+      "coverage": 1.0,
+      "wrong_per_question": 0.8919449901768173,
+      "right_per_question": 0.10805500982318271,
+      "wrong_among_answered": 0.8919449901768173
+    },
+    "gold_string_present": {
+      "n": 979,
+      "answered": 979,
+      "wrong_delivered": 163,
+      "right_delivered": 816,
+      "coverage": 1.0,
+      "wrong_per_question": 0.16649642492339123,
+      "right_per_question": 0.8335035750766088,
+      "wrong_among_answered": 0.16649642492339123
+    },
+    "gold_string_absent": {
+      "n": 742,
+      "answered": 742,
+      "wrong_delivered": 677,
+      "right_delivered": 65,
+      "coverage": 1.0,
+      "wrong_per_question": 0.9123989218328841,
+      "right_per_question": 0.0876010781671159,
+      "wrong_among_answered": 0.9123989218328841
+    }
+  },
+  "majority": {
+    "0.55": {
+      "guard": {
+        "threshold": 0.5793866113420705,
+        "calibration_coverage": 0.5500720461095101,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 957,
+            "wrong_delivered": 212,
+            "right_delivered": 745,
+            "coverage": 0.5560720511330621,
+            "wrong_per_question": 0.1231841952353283,
+            "right_per_question": 0.4328878558977339,
+            "wrong_among_answered": 0.22152560083594566
+          },
+          "bn": {
+            "n": 113,
+            "answered": 52,
+            "wrong_delivered": 12,
+            "right_delivered": 40,
+            "coverage": 0.46017699115044247,
+            "wrong_per_question": 0.10619469026548672,
+            "right_per_question": 0.35398230088495575,
+            "wrong_among_answered": 0.23076923076923078
+          },
+          "en": {
+            "n": 440,
+            "answered": 250,
+            "wrong_delivered": 53,
+            "right_delivered": 197,
+            "coverage": 0.5681818181818182,
+            "wrong_per_question": 0.12045454545454545,
+            "right_per_question": 0.44772727272727275,
+            "wrong_among_answered": 0.212
+          },
+          "sw": {
+            "n": 499,
+            "answered": 268,
+            "wrong_delivered": 63,
+            "right_delivered": 205,
+            "coverage": 0.5370741482965932,
+            "wrong_per_question": 0.12625250501002003,
+            "right_per_question": 0.41082164328657317,
+            "wrong_among_answered": 0.23507462686567165
+          },
+          "te": {
+            "n": 669,
+            "answered": 387,
+            "wrong_delivered": 84,
+            "right_delivered": 303,
+            "coverage": 0.57847533632287,
+            "wrong_per_question": 0.12556053811659193,
+            "right_per_question": 0.452914798206278,
+            "wrong_among_answered": 0.21705426356589147
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 864,
+            "wrong_delivered": 139,
+            "right_delivered": 725,
+            "coverage": 0.7128712871287128,
+            "wrong_per_question": 0.11468646864686469,
+            "right_per_question": 0.5981848184818482,
+            "wrong_among_answered": 0.16087962962962962
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 93,
+            "wrong_delivered": 73,
+            "right_delivered": 20,
+            "coverage": 0.18271119842829076,
+            "wrong_per_question": 0.14341846758349705,
+            "right_per_question": 0.03929273084479371,
+            "wrong_among_answered": 0.7849462365591398
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 799,
+            "wrong_delivered": 75,
+            "right_delivered": 724,
+            "coverage": 0.8161389172625128,
+            "wrong_per_question": 0.07660878447395301,
+            "right_per_question": 0.7395301327885597,
+            "wrong_among_answered": 0.09386733416770963
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 158,
+            "wrong_delivered": 137,
+            "right_delivered": 21,
+            "coverage": 0.21293800539083557,
+            "wrong_per_question": 0.18463611859838275,
+            "right_per_question": 0.02830188679245283,
+            "wrong_among_answered": 0.8670886075949367
+          }
+        }
+      },
+      "probe_only": {
+        "threshold": 0.5975319743156433,
+        "calibration_coverage": 0.5500720461095101,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 948,
+            "wrong_delivered": 200,
+            "right_delivered": 748,
+            "coverage": 0.5508425334108077,
+            "wrong_per_question": 0.11621150493898896,
+            "right_per_question": 0.4346310284718187,
+            "wrong_among_answered": 0.2109704641350211
+          },
+          "bn": {
+            "n": 113,
+            "answered": 50,
+            "wrong_delivered": 10,
+            "right_delivered": 40,
+            "coverage": 0.4424778761061947,
+            "wrong_per_question": 0.08849557522123894,
+            "right_per_question": 0.35398230088495575,
+            "wrong_among_answered": 0.2
+          },
+          "en": {
+            "n": 440,
+            "answered": 254,
+            "wrong_delivered": 55,
+            "right_delivered": 199,
+            "coverage": 0.5772727272727273,
+            "wrong_per_question": 0.125,
+            "right_per_question": 0.45227272727272727,
+            "wrong_among_answered": 0.21653543307086615
+          },
+          "sw": {
+            "n": 499,
+            "answered": 267,
+            "wrong_delivered": 61,
+            "right_delivered": 206,
+            "coverage": 0.5350701402805611,
+            "wrong_per_question": 0.12224448897795591,
+            "right_per_question": 0.41282565130260523,
+            "wrong_among_answered": 0.22846441947565543
+          },
+          "te": {
+            "n": 669,
+            "answered": 377,
+            "wrong_delivered": 74,
+            "right_delivered": 303,
+            "coverage": 0.5635276532137519,
+            "wrong_per_question": 0.11061285500747384,
+            "right_per_question": 0.452914798206278,
+            "wrong_among_answered": 0.1962864721485411
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 844,
+            "wrong_delivered": 120,
+            "right_delivered": 724,
+            "coverage": 0.6963696369636964,
+            "wrong_per_question": 0.09900990099009901,
+            "right_per_question": 0.5973597359735974,
+            "wrong_among_answered": 0.14218009478672985
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 104,
+            "wrong_delivered": 80,
+            "right_delivered": 24,
+            "coverage": 0.2043222003929273,
+            "wrong_per_question": 0.15717092337917485,
+            "right_per_question": 0.047151277013752456,
+            "wrong_among_answered": 0.7692307692307693
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 781,
+            "wrong_delivered": 62,
+            "right_delivered": 719,
+            "coverage": 0.797752808988764,
+            "wrong_per_question": 0.06332992849846783,
+            "right_per_question": 0.7344228804902962,
+            "wrong_among_answered": 0.0793854033290653
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 167,
+            "wrong_delivered": 138,
+            "right_delivered": 29,
+            "coverage": 0.22506738544474394,
+            "wrong_per_question": 0.18598382749326145,
+            "right_per_question": 0.03908355795148248,
+            "wrong_among_answered": 0.8263473053892215
+          }
+        }
+      },
+      "no_activation": {
+        "threshold": 0.5494096274263086,
+        "calibration_coverage": 0.5500720461095101,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 990,
+            "wrong_delivered": 301,
+            "right_delivered": 689,
+            "coverage": 0.5752469494479954,
+            "wrong_per_question": 0.1748983149331784,
+            "right_per_question": 0.40034863451481695,
+            "wrong_among_answered": 0.30404040404040406
+          },
+          "bn": {
+            "n": 113,
+            "answered": 54,
+            "wrong_delivered": 15,
+            "right_delivered": 39,
+            "coverage": 0.4778761061946903,
+            "wrong_per_question": 0.13274336283185842,
+            "right_per_question": 0.34513274336283184,
+            "wrong_among_answered": 0.2777777777777778
+          },
+          "en": {
+            "n": 440,
+            "answered": 228,
+            "wrong_delivered": 57,
+            "right_delivered": 171,
+            "coverage": 0.5181818181818182,
+            "wrong_per_question": 0.12954545454545455,
+            "right_per_question": 0.3886363636363636,
+            "wrong_among_answered": 0.25
+          },
+          "sw": {
+            "n": 499,
+            "answered": 254,
+            "wrong_delivered": 73,
+            "right_delivered": 181,
+            "coverage": 0.5090180360721442,
+            "wrong_per_question": 0.1462925851703407,
+            "right_per_question": 0.3627254509018036,
+            "wrong_among_answered": 0.2874015748031496
+          },
+          "te": {
+            "n": 669,
+            "answered": 454,
+            "wrong_delivered": 156,
+            "right_delivered": 298,
+            "coverage": 0.6786248131539612,
+            "wrong_per_question": 0.23318385650224216,
+            "right_per_question": 0.445440956651719,
+            "wrong_among_answered": 0.3436123348017621
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 867,
+            "wrong_delivered": 188,
+            "right_delivered": 679,
+            "coverage": 0.7153465346534653,
+            "wrong_per_question": 0.1551155115511551,
+            "right_per_question": 0.5602310231023102,
+            "wrong_among_answered": 0.21683967704728951
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 123,
+            "wrong_delivered": 113,
+            "right_delivered": 10,
+            "coverage": 0.24165029469548133,
+            "wrong_per_question": 0.2220039292730845,
+            "right_per_question": 0.019646365422396856,
+            "wrong_among_answered": 0.9186991869918699
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 767,
+            "wrong_delivered": 90,
+            "right_delivered": 677,
+            "coverage": 0.7834525025536262,
+            "wrong_per_question": 0.09193054136874361,
+            "right_per_question": 0.6915219611848825,
+            "wrong_among_answered": 0.11734028683181226
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 223,
+            "wrong_delivered": 211,
+            "right_delivered": 12,
+            "coverage": 0.3005390835579515,
+            "wrong_per_question": 0.284366576819407,
+            "right_per_question": 0.016172506738544475,
+            "wrong_among_answered": 0.9461883408071748
+          }
+        }
+      }
+    },
+    "0.6": {
+      "guard": {
+        "threshold": 0.6591971129412213,
+        "calibration_coverage": 0.6001440922190202,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 1070,
+            "wrong_delivered": 285,
+            "right_delivered": 785,
+            "coverage": 0.6217315514235909,
+            "wrong_per_question": 0.16560139453805928,
+            "right_per_question": 0.45613015688553166,
+            "wrong_among_answered": 0.26635514018691586
+          },
+          "bn": {
+            "n": 113,
+            "answered": 55,
+            "wrong_delivered": 14,
+            "right_delivered": 41,
+            "coverage": 0.48672566371681414,
+            "wrong_per_question": 0.12389380530973451,
+            "right_per_question": 0.36283185840707965,
+            "wrong_among_answered": 0.2545454545454545
+          },
+          "en": {
+            "n": 440,
+            "answered": 274,
+            "wrong_delivered": 67,
+            "right_delivered": 207,
+            "coverage": 0.6227272727272727,
+            "wrong_per_question": 0.15227272727272728,
+            "right_per_question": 0.47045454545454546,
+            "wrong_among_answered": 0.24452554744525548
+          },
+          "sw": {
+            "n": 499,
+            "answered": 294,
+            "wrong_delivered": 75,
+            "right_delivered": 219,
+            "coverage": 0.5891783567134269,
+            "wrong_per_question": 0.15030060120240482,
+            "right_per_question": 0.43887775551102204,
+            "wrong_among_answered": 0.25510204081632654
+          },
+          "te": {
+            "n": 669,
+            "answered": 447,
+            "wrong_delivered": 129,
+            "right_delivered": 318,
+            "coverage": 0.6681614349775785,
+            "wrong_per_question": 0.19282511210762332,
+            "right_per_question": 0.47533632286995514,
+            "wrong_among_answered": 0.28859060402684567
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 932,
+            "wrong_delivered": 171,
+            "right_delivered": 761,
+            "coverage": 0.768976897689769,
+            "wrong_per_question": 0.14108910891089108,
+            "right_per_question": 0.6278877887788779,
+            "wrong_among_answered": 0.1834763948497854
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 138,
+            "wrong_delivered": 114,
+            "right_delivered": 24,
+            "coverage": 0.27111984282907664,
+            "wrong_per_question": 0.22396856581532418,
+            "right_per_question": 0.047151277013752456,
+            "wrong_among_answered": 0.8260869565217391
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 842,
+            "wrong_delivered": 85,
+            "right_delivered": 757,
+            "coverage": 0.8600612870275791,
+            "wrong_per_question": 0.08682328907048008,
+            "right_per_question": 0.7732379979570991,
+            "wrong_among_answered": 0.10095011876484561
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 228,
+            "wrong_delivered": 200,
+            "right_delivered": 28,
+            "coverage": 0.30727762803234504,
+            "wrong_per_question": 0.2695417789757412,
+            "right_per_question": 0.03773584905660377,
+            "wrong_among_answered": 0.8771929824561403
+          }
+        }
+      },
+      "probe_only": {
+        "threshold": 0.685005247592926,
+        "calibration_coverage": 0.6001440922190202,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 1077,
+            "wrong_delivered": 290,
+            "right_delivered": 787,
+            "coverage": 0.6257989540964556,
+            "wrong_per_question": 0.168506682161534,
+            "right_per_question": 0.45729227193492156,
+            "wrong_among_answered": 0.2692664809656453
+          },
+          "bn": {
+            "n": 113,
+            "answered": 53,
+            "wrong_delivered": 11,
+            "right_delivered": 42,
+            "coverage": 0.4690265486725664,
+            "wrong_per_question": 0.09734513274336283,
+            "right_per_question": 0.37168141592920356,
+            "wrong_among_answered": 0.20754716981132076
+          },
+          "en": {
+            "n": 440,
+            "answered": 287,
+            "wrong_delivered": 75,
+            "right_delivered": 212,
+            "coverage": 0.6522727272727272,
+            "wrong_per_question": 0.17045454545454544,
+            "right_per_question": 0.4818181818181818,
+            "wrong_among_answered": 0.2613240418118467
+          },
+          "sw": {
+            "n": 499,
+            "answered": 301,
+            "wrong_delivered": 84,
+            "right_delivered": 217,
+            "coverage": 0.6032064128256514,
+            "wrong_per_question": 0.1683366733466934,
+            "right_per_question": 0.4348697394789579,
+            "wrong_among_answered": 0.27906976744186046
+          },
+          "te": {
+            "n": 669,
+            "answered": 436,
+            "wrong_delivered": 120,
+            "right_delivered": 316,
+            "coverage": 0.6517189835575485,
+            "wrong_per_question": 0.17937219730941703,
+            "right_per_question": 0.47234678624813153,
+            "wrong_among_answered": 0.27522935779816515
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 925,
+            "wrong_delivered": 169,
+            "right_delivered": 756,
+            "coverage": 0.7632013201320133,
+            "wrong_per_question": 0.13943894389438943,
+            "right_per_question": 0.6237623762376238,
+            "wrong_among_answered": 0.1827027027027027
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 152,
+            "wrong_delivered": 121,
+            "right_delivered": 31,
+            "coverage": 0.29862475442043224,
+            "wrong_per_question": 0.23772102161100198,
+            "right_per_question": 0.060903732809430254,
+            "wrong_among_answered": 0.7960526315789473
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 837,
+            "wrong_delivered": 84,
+            "right_delivered": 753,
+            "coverage": 0.8549540347293156,
+            "wrong_per_question": 0.08580183861082738,
+            "right_per_question": 0.7691521961184883,
+            "wrong_among_answered": 0.1003584229390681
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 240,
+            "wrong_delivered": 206,
+            "right_delivered": 34,
+            "coverage": 0.32345013477088946,
+            "wrong_per_question": 0.2776280323450135,
+            "right_per_question": 0.04582210242587601,
+            "wrong_among_answered": 0.8583333333333333
+          }
+        }
+      },
+      "no_activation": {
+        "threshold": 0.5924078993824761,
+        "calibration_coverage": 0.6001440922190202,
+        "test": {
+          "all": {
+            "n": 1721,
+            "answered": 1073,
+            "wrong_delivered": 348,
+            "right_delivered": 725,
+            "coverage": 0.6234747239976758,
+            "wrong_per_question": 0.2022080185938408,
+            "right_per_question": 0.421266705403835,
+            "wrong_among_answered": 0.32432432432432434
+          },
+          "bn": {
+            "n": 113,
+            "answered": 59,
+            "wrong_delivered": 17,
+            "right_delivered": 42,
+            "coverage": 0.5221238938053098,
+            "wrong_per_question": 0.1504424778761062,
+            "right_per_question": 0.37168141592920356,
+            "wrong_among_answered": 0.288135593220339
+          },
+          "en": {
+            "n": 440,
+            "answered": 245,
+            "wrong_delivered": 66,
+            "right_delivered": 179,
+            "coverage": 0.5568181818181818,
+            "wrong_per_question": 0.15,
+            "right_per_question": 0.4068181818181818,
+            "wrong_among_answered": 0.2693877551020408
+          },
+          "sw": {
+            "n": 499,
+            "answered": 280,
+            "wrong_delivered": 82,
+            "right_delivered": 198,
+            "coverage": 0.561122244488978,
+            "wrong_per_question": 0.16432865731462926,
+            "right_per_question": 0.3967935871743487,
+            "wrong_among_answered": 0.29285714285714287
+          },
+          "te": {
+            "n": 669,
+            "answered": 489,
+            "wrong_delivered": 183,
+            "right_delivered": 306,
+            "coverage": 0.7309417040358744,
+            "wrong_per_question": 0.273542600896861,
+            "right_per_question": 0.45739910313901344,
+            "wrong_among_answered": 0.37423312883435583
+          },
+          "source_article_available": {
+            "n": 1212,
+            "answered": 924,
+            "wrong_delivered": 211,
+            "right_delivered": 713,
+            "coverage": 0.7623762376237624,
+            "wrong_per_question": 0.1740924092409241,
+            "right_per_question": 0.5882838283828383,
+            "wrong_among_answered": 0.22835497835497837
+          },
+          "source_article_excluded": {
+            "n": 509,
+            "answered": 149,
+            "wrong_delivered": 137,
+            "right_delivered": 12,
+            "coverage": 0.29273084479371314,
+            "wrong_per_question": 0.2691552062868369,
+            "right_per_question": 0.023575638506876228,
+            "wrong_among_answered": 0.9194630872483222
+          },
+          "gold_string_present": {
+            "n": 979,
+            "answered": 807,
+            "wrong_delivered": 99,
+            "right_delivered": 708,
+            "coverage": 0.8243105209397344,
+            "wrong_per_question": 0.10112359550561797,
+            "right_per_question": 0.7231869254341164,
+            "wrong_among_answered": 0.12267657992565056
+          },
+          "gold_string_absent": {
+            "n": 742,
+            "answered": 266,
+            "wrong_delivered": 249,
+            "right_delivered": 17,
+            "coverage": 0.3584905660377358,
+            "wrong_per_question": 0.33557951482479786,
+            "right_per_question": 0.022911051212938006,
+            "wrong_among_answered": 0.9360902255639098
+          }
+        }
+      }
+    }
+  },
+  "independent_pilot": {
+    "pilot_n": 1334,
+    "certification_n": 1442,
+    "threshold": 0.3260635369232089,
+    "test": {
+      "all": {
+        "n": 1721,
+        "answered": 623,
+        "wrong_delivered": 58,
+        "right_delivered": 565,
+        "coverage": 0.36199883788495063,
+        "wrong_per_question": 0.0337013364323068,
+        "right_per_question": 0.3282975014526438,
+        "wrong_among_answered": 0.09309791332263243
+      },
+      "bn": {
+        "n": 113,
+        "answered": 36,
+        "wrong_delivered": 4,
+        "right_delivered": 32,
+        "coverage": 0.3185840707964602,
+        "wrong_per_question": 0.035398230088495575,
+        "right_per_question": 0.2831858407079646,
+        "wrong_among_answered": 0.1111111111111111
+      },
+      "en": {
+        "n": 440,
+        "answered": 146,
+        "wrong_delivered": 15,
+        "right_delivered": 131,
+        "coverage": 0.33181818181818185,
+        "wrong_per_question": 0.03409090909090909,
+        "right_per_question": 0.29772727272727273,
+        "wrong_among_answered": 0.10273972602739725
+      },
+      "sw": {
+        "n": 499,
+        "answered": 169,
+        "wrong_delivered": 21,
+        "right_delivered": 148,
+        "coverage": 0.33867735470941884,
+        "wrong_per_question": 0.04208416833667335,
+        "right_per_question": 0.2965931863727455,
+        "wrong_among_answered": 0.1242603550295858
+      },
+      "te": {
+        "n": 669,
+        "answered": 272,
+        "wrong_delivered": 18,
+        "right_delivered": 254,
+        "coverage": 0.40657698056801195,
+        "wrong_per_question": 0.026905829596412557,
+        "right_per_question": 0.3796711509715994,
+        "wrong_among_answered": 0.0661764705882353
+      },
+      "source_article_available": {
+        "n": 1212,
+        "answered": 604,
+        "wrong_delivered": 46,
+        "right_delivered": 558,
+        "coverage": 0.49834983498349833,
+        "wrong_per_question": 0.037953795379537955,
+        "right_per_question": 0.4603960396039604,
+        "wrong_among_answered": 0.076158940397351
+      },
+      "source_article_excluded": {
+        "n": 509,
+        "answered": 19,
+        "wrong_delivered": 12,
+        "right_delivered": 7,
+        "coverage": 0.03732809430255403,
+        "wrong_per_question": 0.023575638506876228,
+        "right_per_question": 0.0137524557956778,
+        "wrong_among_answered": 0.631578947368421
+      },
+      "gold_string_present": {
+        "n": 979,
+        "answered": 582,
+        "wrong_delivered": 25,
+        "right_delivered": 557,
+        "coverage": 0.5944841675178754,
+        "wrong_per_question": 0.02553626149131767,
+        "right_per_question": 0.5689479060265578,
+        "wrong_among_answered": 0.0429553264604811
+      },
+      "gold_string_absent": {
+        "n": 742,
+        "answered": 41,
+        "wrong_delivered": 33,
+        "right_delivered": 8,
+        "coverage": 0.05525606469002695,
+        "wrong_per_question": 0.0444743935309973,
+        "right_per_question": 0.01078167115902965,
+        "wrong_among_answered": 0.8048780487804879
+      }
+    }
+  },
+  "frozen_joint_replay": {
+    "stored_labels": {
+      "all": {
+        "n": 1721,
+        "answered": 789,
+        "wrong_delivered": 110,
+        "right_delivered": 679,
+        "coverage": 0.45845438698431146,
+        "wrong_per_question": 0.06391632771644393,
+        "right_per_question": 0.3945380592678675,
+        "wrong_among_answered": 0.1394169835234474
+      },
+      "bn": {
+        "n": 113,
+        "answered": 47,
+        "wrong_delivered": 8,
+        "right_delivered": 39,
+        "coverage": 0.415929203539823,
+        "wrong_per_question": 0.07079646017699115,
+        "right_per_question": 0.34513274336283184,
+        "wrong_among_answered": 0.1702127659574468
+      },
+      "en": {
+        "n": 440,
+        "answered": 194,
+        "wrong_delivered": 25,
+        "right_delivered": 169,
+        "coverage": 0.4409090909090909,
+        "wrong_per_question": 0.056818181818181816,
+        "right_per_question": 0.3840909090909091,
+        "wrong_among_answered": 0.12886597938144329
+      },
+      "sw": {
+        "n": 499,
+        "answered": 221,
+        "wrong_delivered": 35,
+        "right_delivered": 186,
+        "coverage": 0.44288577154308617,
+        "wrong_per_question": 0.07014028056112225,
+        "right_per_question": 0.3727454909819639,
+        "wrong_among_answered": 0.1583710407239819
+      },
+      "te": {
+        "n": 669,
+        "answered": 327,
+        "wrong_delivered": 42,
+        "right_delivered": 285,
+        "coverage": 0.48878923766816146,
+        "wrong_per_question": 0.06278026905829596,
+        "right_per_question": 0.4260089686098655,
+        "wrong_among_answered": 0.12844036697247707
+      },
+      "source_article_available": {
+        "n": 1212,
+        "answered": 747,
+        "wrong_delivered": 79,
+        "right_delivered": 668,
+        "coverage": 0.6163366336633663,
+        "wrong_per_question": 0.06518151815181518,
+        "right_per_question": 0.5511551155115512,
+        "wrong_among_answered": 0.10575635876840696
+      },
+      "source_article_excluded": {
+        "n": 509,
+        "answered": 42,
+        "wrong_delivered": 31,
+        "right_delivered": 11,
+        "coverage": 0.0825147347740668,
+        "wrong_per_question": 0.060903732809430254,
+        "right_per_question": 0.021611001964636542,
+        "wrong_among_answered": 0.7380952380952381
+      },
+      "gold_string_present": {
+        "n": 979,
+        "answered": 709,
+        "wrong_delivered": 44,
+        "right_delivered": 665,
+        "coverage": 0.7242083758937692,
+        "wrong_per_question": 0.0449438202247191,
+        "right_per_question": 0.6792645556690501,
+        "wrong_among_answered": 0.06205923836389281
+      },
+      "gold_string_absent": {
+        "n": 742,
+        "answered": 80,
+        "wrong_delivered": 66,
+        "right_delivered": 14,
+        "coverage": 0.1078167115902965,
+        "wrong_per_question": 0.0889487870619946,
+        "right_per_question": 0.018867924528301886,
+        "wrong_among_answered": 0.825
+      }
+    },
+    "revised_labels": {
+      "all": {
+        "n": 1721,
+        "answered": 789,
+        "wrong_delivered": 110,
+        "right_delivered": 679,
+        "coverage": 0.45845438698431146,
+        "wrong_per_question": 0.06391632771644393,
+        "right_per_question": 0.3945380592678675,
+        "wrong_among_answered": 0.1394169835234474
+      },
+      "bn": {
+        "n": 113,
+        "answered": 47,
+        "wrong_delivered": 8,
+        "right_delivered": 39,
+        "coverage": 0.415929203539823,
+        "wrong_per_question": 0.07079646017699115,
+        "right_per_question": 0.34513274336283184,
+        "wrong_among_answered": 0.1702127659574468
+      },
+      "en": {
+        "n": 440,
+        "answered": 194,
+        "wrong_delivered": 25,
+        "right_delivered": 169,
+        "coverage": 0.4409090909090909,
+        "wrong_per_question": 0.056818181818181816,
+        "right_per_question": 0.3840909090909091,
+        "wrong_among_answered": 0.12886597938144329
+      },
+      "sw": {
+        "n": 499,
+        "answered": 221,
+        "wrong_delivered": 35,
+        "right_delivered": 186,
+        "coverage": 0.44288577154308617,
+        "wrong_per_question": 0.07014028056112225,
+        "right_per_question": 0.3727454909819639,
+        "wrong_among_answered": 0.1583710407239819
+      },
+      "te": {
+        "n": 669,
+        "answered": 327,
+        "wrong_delivered": 42,
+        "right_delivered": 285,
+        "coverage": 0.48878923766816146,
+        "wrong_per_question": 0.06278026905829596,
+        "right_per_question": 0.4260089686098655,
+        "wrong_among_answered": 0.12844036697247707
+      },
+      "source_article_available": {
+        "n": 1212,
+        "answered": 747,
+        "wrong_delivered": 79,
+        "right_delivered": 668,
+        "coverage": 0.6163366336633663,
+        "wrong_per_question": 0.06518151815181518,
+        "right_per_question": 0.5511551155115512,
+        "wrong_among_answered": 0.10575635876840696
+      },
+      "source_article_excluded": {
+        "n": 509,
+        "answered": 42,
+        "wrong_delivered": 31,
+        "right_delivered": 11,
+        "coverage": 0.0825147347740668,
+        "wrong_per_question": 0.060903732809430254,
+        "right_per_question": 0.021611001964636542,
+        "wrong_among_answered": 0.7380952380952381
+      },
+      "gold_string_present": {
+        "n": 979,
+        "answered": 709,
+        "wrong_delivered": 44,
+        "right_delivered": 665,
+        "coverage": 0.7242083758937692,
+        "wrong_per_question": 0.0449438202247191,
+        "right_per_question": 0.6792645556690501,
+        "wrong_among_answered": 0.06205923836389281
+      },
+      "gold_string_absent": {
+        "n": 742,
+        "answered": 80,
+        "wrong_delivered": 66,
+        "right_delivered": 14,
+        "coverage": 0.1078167115902965,
+        "wrong_per_question": 0.0889487870619946,
+        "right_per_question": 0.018867924528301886,
+        "wrong_among_answered": 0.825
+      }
+    }
+  },
+  "labels": "revised automatic scorer",
+  "analysis": "follow-up to the original locked benchmark"
+}

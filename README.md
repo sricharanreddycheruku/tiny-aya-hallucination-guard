@@ -166,8 +166,33 @@ stored and revised labels. Use the revised-label replay for comparisons with the
 uses a built passage index. Run the demo preparation command without `--fetch-only` before benchmarking retries.
 
 An offline rescore of the public answer logs changed 7 of 1,721 TyDiQA labels (837 to 840 marked wrong) and 4 of 1,173
-health labels (669 to 667 marked wrong). These are changes to automatic labels on identical generated answers. New guard
-and retry performance still need to be measured with Tiny Aya.
+health labels (669 to 667 marked wrong). These are changes to automatic labels on identical generated answers.
+
+### Tiny Aya Fire follow-up results
+
+We regenerated the three splits on an RTX 5060 Ti (BF16, batch size 4) and evaluated every policy on the same 1,721 test
+questions with the revised automatic scorer. This is a follow-up to the original locked benchmark.
+
+| Policy | Coverage | Correct delivered | Wrong delivered | Wrong among delivered |
+|---|---:|---:|---:|---:|
+| RAG always answers | 100.0% | 881 | 840 | 48.8% |
+| Published joint guard, replayed | 45.8% | 679 | 110 | 13.9% |
+| Refitted guard, 10% joint calibration target | 44.5% | 666 | 99 | 12.9% |
+| Refitted guard, 55% coverage target | 55.6% | 745 | 212 | 22.2% |
+| Probe only, 55% coverage target | 55.1% | 748 | 200 | 21.1% |
+| No activation, 55% coverage target | 57.5% | 689 | 301 | 30.4% |
+| Refitted guard, 60% coverage target | 62.2% | 785 | 285 | 26.6% |
+
+The 55% target guard delivers 628 fewer wrong answers than always answering and retains majority coverage overall.
+Bengali coverage is 46.0% at this setting. Probe-only delivers three more correct answers and twelve fewer wrong answers
+than the full guard at a similar overall coverage. The refitted guard at the original joint calibration target is more
+conservative than the published replay. We report these as observed trade-offs. The retry policy and multilingual human
+review are pending.
+
+See the [majority-coverage report](reports/followup/group12-guard-benchmark-report.json) and
+[joint-risk comparison](reports/followup/group12-matched-risk.json). For the latter, the new thresholds use
+`conformal_threshold` with alpha 0.10 on the calibration split. The saved majority report's `stored_labels` field refers
+to the labels in the regenerated answer log, which already used the revised scorer.
 
 Fill `factually_correct` and `supported_by_passage` independently in `runs/followup/review.csv` using `yes`, `no` or
 `unclear`. Then run `python src/review_agreement.py runs/followup/review.csv runs/rag_test/answers.jsonl` to compare the
