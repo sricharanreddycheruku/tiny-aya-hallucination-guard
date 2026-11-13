@@ -225,6 +225,21 @@ calibrated for a 10% wrong-delivery target on 40% of topics. It evaluates all th
 with the revised automatic scorer. Paired topic-bootstrap intervals describe uncertainty in differences from the
 published threshold. The target is a calibration objective, and test performance may differ.
 
+The Group 12 run generated answers on all 1,173 questions using Tiny Aya Fire in BF16 at batch size 4.
+Calibration used 405 questions from 16 topics. Evaluation used 768 questions from the remaining 24 topics.
+
+| Policy | Coverage | Correct delivered | Wrong delivered | Wrong out of all questions |
+|---|---:|---:|---:|---:|
+| Frozen TyDiQA threshold | 41.0% | 244 | 71 | 9.24% |
+| Pooled health threshold | 38.5% | 233 | 63 | 8.20% |
+| Per-language health thresholds | 34.9% | 218 | 50 | 6.51% |
+
+The per-language thresholds reduced wrong delivery by 2.73 percentage points (paired topic-bootstrap 95% interval,
+1.81 to 3.47 points lower) and withheld 26 additional correct answers. Wrong delivery was below 10% in each
+language on these held-out topics: Bengali 6.64%, English 6.29%, Swahili 7.14%, and Telugu 6.00%.
+The pooled threshold left Bengali and Telugu above target. The per-language result represents a more conservative
+operating point on this dataset. See the [health recalibration report](reports/followup/group12-health-recalibration.json).
+
 Fill `factually_correct` and `supported_by_passage` independently in `runs/followup/review.csv` using `yes`, `no` or
 `unclear`. Then run `python src/review_agreement.py runs/followup/review.csv runs/rag_test/answers.jsonl` to compare the
 old stored labels and the revised scorer with the factual reviews. For that comparison, use the original saved answer
