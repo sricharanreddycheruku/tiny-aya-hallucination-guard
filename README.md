@@ -1,6 +1,23 @@
 # Knows When It Doesn't Know
 
-A retrieve-first hallucination guard for Tiny Aya in English, Telugu, Bengali and Swahili.
+A retrieve-first hallucination guard for Tiny Aya in English, Telugu, Bengali and Swahili. Built for Lexsi Track 2b, Problem 13.
+
+## The activation probe answers most questions
+
+On 1,721 TyDiQA test questions, the probe answered **55.1%** and delivered **76.2% fewer wrong answers** than RAG answering every question.
+
+| Policy | Coverage | Correct delivered | Wrong delivered |
+|---|---:|---:|---:|
+| RAG always answers | 100.0% | 881 | 840 |
+| Published guard replay | 45.8% | 679 | 110 |
+| **Activation probe, 55% target** | **55.1%** | **748** | **200** |
+| No activation, 55% target | 57.5% | 689 | 301 |
+
+The probe delivered 59 more correct answers and 101 fewer wrong answers than the no-activation baseline at similar coverage.
+Compared with the published guard replay, it delivered 69 more correct answers and 90 more wrong answers.
+See the [full follow-up results](#tiny-aya-fire-follow-up-results) and [submission abstract](ABSTRACT.md).
+
+CuratorKIT built the health benchmark, CircuitKIT tested which activations carried evidence signals, and AuditKIT produced paired comparisons.
 
 ```
 question -> retrieve passage -> Tiny Aya answer + activation -> risk score -> one global threshold -> answer or abstain
@@ -193,6 +210,20 @@ See the [majority-coverage report](reports/followup/group12-guard-benchmark-repo
 [joint-risk comparison](reports/followup/group12-matched-risk.json). For the latter, the new thresholds use
 `conformal_threshold` with alpha 0.10 on the calibration split. The saved majority report's `stored_labels` field refers
 to the labels in the regenerated answer log, which already used the revised scorer.
+
+### Health-domain recalibration
+
+From the repository root, use the health questions in the linked dataset collection and the published guard weights.
+
+```bash
+python src/gate.py --input data/health_big.jsonl --split health --batch-size 4 --out runs/rag_health_recalibrate
+python src/health_recalibrate.py --data data/health_big.jsonl --run runs/rag_health_recalibrate --guard space_build/guard_fire.npz --out runs/followup/health-recalibration.json
+```
+
+The follow-up keeps the guard weights fixed and compares its published threshold with pooled and per-language thresholds
+calibrated for a 10% wrong-delivery target on 40% of topics. It evaluates all three policies on the same held-out topics
+with the revised automatic scorer. Paired topic-bootstrap intervals describe uncertainty in differences from the
+published threshold. The target is a calibration objective, and test performance may differ.
 
 Fill `factually_correct` and `supported_by_passage` independently in `runs/followup/review.csv` using `yes`, `no` or
 `unclear`. Then run `python src/review_agreement.py runs/followup/review.csv runs/rag_test/answers.jsonl` to compare the
